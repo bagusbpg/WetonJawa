@@ -40,10 +40,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         val dayName = listOf("Ngahad", "Senen", "Slasa", "Rebo", "Kemis", "Jemuwah", "Setu")
         val pasaran = listOf("Kliwon", "Legi", "Pahing", "Pon", "Wage")
 
-        var dayIndex = date.get(Calendar.DAY_OF_WEEK)  % 7
+        var dayIndex = date.get(Calendar.DAY_OF_WEEK) % 7
         var pasaranIndex = date.timeInMillis/86400000 % 5
 
-        if (date.get(Calendar.HOUR_OF_DAY) < 15) {
+        if (date.get(Calendar.HOUR_OF_DAY) < 18) {
             dayIndex = (date.get(Calendar.DAY_OF_WEEK) - 1) % 7
             pasaranIndex = (date.timeInMillis/86400000 - 1) % 5
         }

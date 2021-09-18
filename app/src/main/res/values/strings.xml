@@ -4,6 +4,6 @@
     <string name="select_time">Select Time!</string>
     <string name="calculate_weton">Show Weton</string>
     <string name="about">About</string>
-    <string name="weton_description">Weton denotes someone\'s birthday in Javanese Calendar, consisting of the day and "pasaran".The day names are loosely based on Arabic, they are Ngahad for Sunday, Senen for Monday, Slasa for Tuesday, Rebo for Wednesday, Kemis for Thursday, Jumuwah for Friday, and Setu for Saturday. "Pasaran" is sequence of "Pahing", "Pon", "Wage", "Kliwon", and "Legi", repeating in five days cycle. It is interesting to note that a new day in Javanese Calendar starts from 3.00 PM on previous day, instead of 12.00 AM. Thus, someone who is born on Tuesday at 4.00 PM is considered to be born on Rebo (Wednesday) in Javanese Calendar.
+    <string name="weton_description">Weton denotes someone\'s birthday in Javanese Calendar, consisting of the day and "pasaran".The day names are loosely based on Arabic, they are Ngahad for Sunday, Senen for Monday, Slasa for Tuesday, Rebo for Wednesday, Kemis for Thursday, Jumuwah for Friday, and Setu for Saturday. "Pasaran" is sequence of "Pahing", "Pon", "Wage", "Kliwon", and "Legi", repeating in five days cycle. It is interesting to note that a new day in Javanese Calendar starts from sunset (around 6.00 PM in Java) on previous day, instead of 12.00 AM. Thus, someone who is born on Tuesday at 10.00 PM is considered to be born on Rebo (Wednesday) in Javanese Calendar.
     </string>
 </resources>

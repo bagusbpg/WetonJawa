@@ -10,25 +10,19 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.Button
-import android.widget.TextView
+import com.example.wetonjawa.databinding.ActivityMainBinding
 import java.text.DecimalFormat
 import java.util.*
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
+    private lateinit var binding: ActivityMainBinding
+
     private val date: Calendar = Calendar.getInstance()
     private val year = date.get(Calendar.YEAR)
     private val month = date.get(Calendar.MONTH)
     private val day = date.get(Calendar.DAY_OF_MONTH)
     private val hour = date.get(Calendar.HOUR_OF_DAY)
     private val minute = date.get(Calendar.MINUTE)
-
-    private lateinit var selectDate: Button
-    private lateinit var dateView: TextView
-    private lateinit var selectTime: Button
-    private lateinit var timeView: TextView
-    private lateinit var generateWeton: Button
-    private lateinit var wetonView: TextView
 
     private val monthName = listOf("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
 
@@ -53,26 +47,20 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        selectDate = findViewById(R.id.select_date)
-        dateView = findViewById(R.id.show_date)
-        selectTime = findViewById(R.id.select_time)
-        timeView = findViewById(R.id.show_time)
-        generateWeton = findViewById(R.id.generate_weton)
-        wetonView = findViewById(R.id.show_weton)
-
-        with(dateView) {"$day ${monthName[month]} $year".also { text = it }}
-        with(timeView) {"${DecimalFormat("00").format(hour)} : ${DecimalFormat("00").format(minute)}"
+        with(binding.showDate) {"$day ${monthName[month]} $year".also { text = it }}
+        with(binding.showTime) {"${DecimalFormat("00").format(hour)} : ${DecimalFormat("00").format(minute)}"
             .also { text = it }}
 
-        selectDate.setOnClickListener(this)
-        selectTime.setOnClickListener(this)
-        generateWeton.setOnClickListener(this)
+        binding.selectDate.setOnClickListener(this)
+        binding.selectTime.setOnClickListener(this)
+        binding.generateWeton.setOnClickListener(this)
 
         if (savedInstanceState != null) {
             val result = savedInstanceState.getString(STATE_RESULT)
-            wetonView.text = result
+            binding.showWeton.text = result
         }
     }
 
@@ -89,7 +77,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putString(STATE_RESULT, wetonView.text.toString())
+        outState.putString(STATE_RESULT, binding.showWeton.text.toString())
     }
 
     override fun onClick(v: View?) {
@@ -102,7 +90,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     date.set(Calendar.YEAR, year)
                     date.set(Calendar.MONTH, month)
                     date.set(Calendar.DAY_OF_MONTH, dayOfMonth)
-                    "$dayOfMonth ${monthName[month]} $year".also { dateView.text = it } },
+                    "$dayOfMonth ${monthName[month]} $year".also { binding.showDate.text = it } },
                 year,
                 month,
                 day
@@ -117,7 +105,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     date.set(Calendar.HOUR_OF_DAY, hour)
                     date.set(Calendar.MINUTE, minute)
                     "${DecimalFormat("00").format(hour)} : ${DecimalFormat("00").format(minute)}"
-                    .also { timeView.text = it } },
+                    .also { binding.showTime.text = it } },
                 hour,
                 minute,
                 true
@@ -125,6 +113,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             dialog.show()
         }
 
-        if (v?.id == R.id.generate_weton) wetonView.text = if (date.get(Calendar.YEAR) >= 1970) getWeton() else alert
+        if (v?.id == R.id.generate_weton) binding.showWeton.text = if (date.get(Calendar.YEAR) >= 1970) getWeton() else alert
     }
 }
